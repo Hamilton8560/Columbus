@@ -1,14 +1,14 @@
 const navLinks = [
   {
-    name: "Work",
+    name: "How It Works",
     link: "#work",
   },
   {
-    name: "Experience",
+    name: "Shippers",
     link: "#experience",
   },
   {
-    name: "Skills",
+    name: "Drivers",
     link: "#skills",
   },
   {
@@ -18,21 +18,21 @@ const navLinks = [
 ];
 
 const words = [
-  { text: "Ideas", imgPath: "/images/ideas.svg" },
-  { text: "Concepts", imgPath: "/images/concepts.svg" },
-  { text: "Designs", imgPath: "/images/designs.svg" },
-  { text: "Code", imgPath: "/images/code.svg" },
-  { text: "Ideas", imgPath: "/images/ideas.svg" },
-  { text: "Concepts", imgPath: "/images/concepts.svg" },
-  { text: "Designs", imgPath: "/images/designs.svg" },
-  { text: "Code", imgPath: "/images/code.svg" },
+  { text: "Freight", imgPath: "/images/ideas.svg" },
+  { text: "Loads", imgPath: "/images/concepts.svg" },
+  { text: "Shipments", imgPath: "/images/designs.svg" },
+  { text: "Cargo", imgPath: "/images/code.svg" },
+  { text: "Freight", imgPath: "/images/ideas.svg" },
+  { text: "Loads", imgPath: "/images/concepts.svg" },
+  { text: "Shipments", imgPath: "/images/designs.svg" },
+  { text: "Cargo", imgPath: "/images/code.svg" },
 ];
 
 const counterItems = [
-  { value: 15, suffix: "+", label: "Years of Experience" },
-  { value: 200, suffix: "+", label: "Satisfied Clients" },
-  { value: 108, suffix: "+", label: "Completed Projects" },
-  { value: 90, suffix: "%", label: "Client Retention Rate" },
+  { value: 50, suffix: "K", label: "Loads Delivered" },
+  { value: 800, suffix: "+", label: "Active Carriers" },
+  { value: 25, suffix: "%", label: "Average Savings" },
+  { value: 98, suffix: "%", label: "On-Time Delivery Rate" },
 ];
 
 const logoIconsList = [
@@ -74,112 +74,112 @@ const logoIconsList = [
 const abilities = [
   {
     imgPath: "/images/seo.png",
-    title: "Quality Focus",
-    desc: "Delivering high-quality results while maintaining attention to every detail.",
+    title: "Direct Connect",
+    desc: "Connect directly with carriers. No brokers, no middlemen, no hidden fees.",
   },
   {
     imgPath: "/images/chat.png",
-    title: "Reliable Communication",
-    desc: "Keeping you updated at every step to ensure transparency and clarity.",
+    title: "Real-Time Tracking",
+    desc: "Track your freight from pickup to delivery with live GPS updates.",
   },
   {
     imgPath: "/images/time.png",
-    title: "On-Time Delivery",
-    desc: "Making sure projects are completed on schedule, with quality & attention to detail.",
+    title: "Lower Costs",
+    desc: "Save up to 25% by eliminating broker commissions on every single load.",
   },
 ];
 
 const techStackImgs = [
   {
-    name: "React Developer",
-    imgPath: "/images/logos/react.png",
+    name: "Dry Van Freight",
+    imgPath: "/images/boxtruckimage.png",
   },
   {
-    name: "Python Developer",
-    imgPath: "/images/logos/python.svg",
+    name: "Flatbed Hauling",
+    imgPath: "/images/flatbedimage.png",
   },
   {
-    name: "Backend Developer",
-    imgPath: "/images/logos/node.png",
+    name: "Refrigerated Loads",
+    imgPath: "/images/reeferimage.png",
   },
   {
-    name: "Interactive Developer",
-    imgPath: "/images/logos/three.png",
+    name: "Step Deck Trailers",
+    imgPath: "/images/stepdeckimage.png",
   },
   {
-    name: "Project Manager",
-    imgPath: "/images/logos/git.svg",
+    name: "Oversized Freight",
+    imgPath: "/images/oversizedimage.png",
   },
 ];
 
 const techStackIcons = [
   {
-    name: "React Developer",
-    modelPath: "/models/react_logo-transformed.glb",
-    scale: 1,
+    name: "Dry Van Freight",
+    modelPath: "/models/box_truck.glb",
+    scale: 3,
+    rotation: [0, Math.PI / 5, 0],
+  },
+  {
+    name: "Flatbed Hauling",
+     modelPath: "/models/flatbed.glb",
+    scale: 3,
     rotation: [0, 0, 0],
   },
   {
-    name: "Python Developer",
-    modelPath: "/models/python-transformed.glb",
-    scale: 0.8,
+    name: "Refrigerated Loads",
+    modelPath: "/models/reefer.glb",
+    scale: 3,
+    rotation: [0, Math.PI / 4, 0],
+  },
+  {
+    name: "Step Deck Trailers",
+    modelPath: "/models/stepdeck.glb",
+    scale: 3,
     rotation: [0, 0, 0],
   },
   {
-    name: "Backend Developer",
-    modelPath: "/models/node-transformed.glb",
-    scale: 5,
-    rotation: [0, -Math.PI / 2, 0],
-  },
-  {
-    name: "Interactive Developer",
-    modelPath: "/models/three.js-transformed.glb",
-    scale: 0.05,
-    rotation: [0, 0, 0],
-  },
-  {
-    name: "Project Manager",
-    modelPath: "/models/git-svg-transformed.glb",
-    scale: 0.05,
-    rotation: [0, -Math.PI / 4, 0],
+    name: "Oversized Freight",
+    modelPath: "/models/oversized.glb",
+    scale: 3,
+    rotation: [0, Math.PI / 2, 0],
   },
 ];
 
 const expCards = [
   {
-    review: "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
+    review: "Columbus transformed how we move freight. We cut shipping costs by 22% and now have direct relationships with reliable carriers we trust.",
     imgPath: "/images/exp1.png",
     logoPath: "/images/logo1.png",
-    title: "Frontend Developer",
-    date: "January 2023 - Present",
+    title: "For Shippers",
+    date: "Post Loads in Minutes",
     responsibilities: [
-      "Developed and maintained user-facing features for the Hostinger website.",
-      "Collaborated closely with UI/UX designers to ensure seamless user experiences.",
-      "Optimized web applications for maximum speed and scalability.",
+      "Get instant quotes from verified carriers competing for your freight.",
+      "Track shipments in real-time from pickup to final delivery destination.",
+      "Eliminate broker fees and connect directly with qualified drivers.",
     ],
   },
   {
-    review: "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
+    review: "Since joining Columbus, I've increased my take-home pay by keeping more of each load. Finding freight has never been easier.",
     imgPath: "/images/exp2.png",
     logoPath: "/images/logo2.png",
-    title: "Full Stack Developer",
-    date: "June 2020 - December 2023",
+    title: "For Carriers",
+    date: "Find Loads Directly",
     responsibilities: [
-      "Led the development of Docker's web applications, focusing on scalability.",
-      "Worked with backend engineers to integrate APIs seamlessly with the frontend.",
-      "Contributed to open-source projects that were used with the Docker ecosystem.",
+      "Access thousands of loads posted directly by shippers nationwide.",
+      "Keep more of your earnings without broker commissions eating profits.",
+      "Build direct relationships with shippers for consistent freight.",
     ],
   },
   {
-    review: "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
+    review: "The platform is incredibly easy to use. I went from signing up to booking my first load in under an hour. Game changer.",
     imgPath: "/images/exp3.png",
     logoPath: "/images/logo3.png",
-    title: "React Native Developer",
-    date: "March 2019 - May 2020",
+    title: "For Owner-Operators",
+    date: "Maximize Your Earnings",
     responsibilities: [
-      "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-      "Improved app performance and user experience through code optimization and testing.",
-      "Coordinated with the product team to implement features based on feedback.",
+      "Set your own rates and choose the loads that work for your schedule.",
+      "Get paid faster with streamlined payment processing and tracking.",
+      "Access dedicated support to help grow your trucking business.",
     ],
   },
 ];
@@ -201,45 +201,45 @@ const expLogos = [
 
 const testimonials = [
   {
-    name: "Esther Howard",
-    mentions: "@estherhoward",
+    name: "Sarah Mitchell",
+    mentions: "@mitchellfreight",
     review:
-      "I can’t say enough good things about Adrian. He was able to take our complex project requirements and turn them into a seamless, functional website. His problem-solving abilities are outstanding.",
+      "Columbus completely changed how we handle logistics. We used to spend hours calling brokers and now we post a load and have carriers bidding within minutes. Our shipping costs dropped 20%.",
     imgPath: "/images/client1.png",
   },
   {
-    name: "Wade Warren",
-    mentions: "@wadewarren",
+    name: "Marcus Johnson",
+    mentions: "@marcusjhauls",
     review:
-      "Working with Adrian was a fantastic experience. He transformed our outdated website into a modern, user-friendly platform. His attention to detail and commitment to quality are unmatched. Highly recommend him for any web dev projects.",
+      "As an owner-operator, Columbus has been a game changer. I keep more money from each load without brokers taking their cut. The app makes finding good-paying freight incredibly simple. Highly recommend to any trucker.",
     imgPath: "/images/client3.png",
   },
   {
-    name: "Guy Hawkins",
-    mentions: "@guyhawkins",
+    name: "David Thompson",
+    mentions: "@thompsonlogistics",
     review:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+      "We've been in the freight business for 15 years and Columbus is the best platform we've used. The direct shipper connections mean better rates, and the real-time tracking gives our customers peace of mind. If you're looking to streamline your freight operations and cut costs, Columbus is the solution.",
     imgPath: "/images/client2.png",
   },
   {
-    name: "Marvin McKinney",
-    mentions: "@marvinmckinney",
+    name: "Jennifer Rodriguez",
+    mentions: "@jrodshipments",
     review:
-      "Adrian was a pleasure to work with. He turned our outdated website into a fresh, intuitive platform that’s both modern and easy to navigate. Fantastic work overall.",
+      "Finding reliable carriers used to be our biggest headache. With Columbus, we have access to vetted drivers who actually show up on time. Our delivery success rate is now at 99%.",
     imgPath: "/images/client5.png",
   },
   {
-    name: "Floyd Miles",
-    mentions: "@floydmiles",
+    name: "Robert Williams",
+    mentions: "@rwilliamstrucking",
     review:
-      "Adrian’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional!",
+      "I was skeptical at first but Columbus delivered on every promise. More loads, better pay, and I finally have control over my schedule. My revenue increased by 30% in the first three months!",
     imgPath: "/images/client4.png",
   },
   {
-    name: "Albert Flores",
-    mentions: "@albertflores",
+    name: "Amanda Foster",
+    mentions: "@fostermfg",
     review:
-      "Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
+      "Our manufacturing company ships nationwide daily. Columbus simplified everything and gave us visibility we never had before. The customer support team is responsive and helpful.",
     imgPath: "/images/client6.png",
   },
 ];
