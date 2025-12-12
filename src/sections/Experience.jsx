@@ -123,14 +123,16 @@ const Experience = () => {
 
 
         {/* Feature Cards */}
-        <div className="mt-16">
-          <BentoGrid>
-            {featureCards.map((card, index) => (
-              <div key={card.id} className="feature-card">
-                <EnhancedBentoCard card={card} index={index} />
-              </div>
-            ))}
-          </BentoGrid>
+        <div className="mt-16 -mx-5 md:mx-0">
+          <div className="px-5 md:px-0">
+            <BentoGrid>
+              {featureCards.map((card, index) => (
+                <div key={card.id} className="feature-card">
+                  <EnhancedBentoCard card={card} index={index} />
+                </div>
+              ))}
+            </BentoGrid>
+          </div>
         </div>
 
         {/* Enhanced Stats Section */}

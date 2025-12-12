@@ -1,5 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useState, useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import AnimatedCounter from "../components/AnimatedCounter";
 import Button from "../components/Button";
@@ -7,6 +9,9 @@ import { words } from "../constants";
 import HeroExperience from "../components/models/hero_models/HeroExperience";
 
 const Hero = () => {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const [showHint, setShowHint] = useState(false);
+
   useGSAP(() => {
     gsap.fromTo(
       ".hero-text h1",
@@ -14,6 +19,19 @@ const Hero = () => {
       { y: 0, opacity: 1, stagger: 0.2, duration: 1, ease: "power2.inOut" }
     );
   });
+
+  // Show mobile hint after a delay
+  useEffect(() => {
+    if (isMobile) {
+      const timer = setTimeout(() => {
+        setShowHint(true);
+        // Auto-hide after 5 seconds
+        setTimeout(() => setShowHint(false), 5000);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isMobile]);
 
   return (
     <section id="hero" className="relative overflow-hidden">
@@ -67,6 +85,16 @@ const Hero = () => {
         <figure>
           <div className="hero-3d-layout">
             <HeroExperience />
+            
+            {/* Mobile interaction hint */}
+            {isMobile && showHint && (
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 bg-black/80 text-white text-sm px-4 py-2 rounded-lg backdrop-blur-sm animate-pulse">
+                <div className="flex items-center gap-2">
+                  <span>👆</span>
+                  <span>Use two fingers to rotate</span>
+                </div>
+              </div>
+            )}
           </div>
         </figure>
       </div>

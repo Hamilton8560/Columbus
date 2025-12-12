@@ -121,8 +121,8 @@ const Contact = () => {
           sub="💬 Join Columbus today and start saving! 🚀"
         />
         <div className="grid-12-cols mt-16">
-          <div className="xl:col-span-5">
-            <div className="flex-center card-border rounded-xl p-10">
+          <div className="col-span-full xl:col-span-5">
+            <div className="xl:flex-center xl:card-border xl:rounded-xl xl:p-10">
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
@@ -196,7 +196,7 @@ const Contact = () => {
               </form>
             </div>
           </div>
-          <div className="xl:col-span-7 min-h-96">
+          <div className="hidden xl:block xl:col-span-7 min-h-96">
             <div className="bg-black w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
               <ContactExperience />
             </div>

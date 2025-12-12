@@ -4,7 +4,8 @@ export const BentoGrid = ({ className, children }) => {
   return (
     <div
       className={cn(
-        "grid w-full auto-rows-[22rem] grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3",
+        "grid w-full auto-rows-[28rem] md:auto-rows-[22rem] grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3",
+        "px-0 md:px-0", // Ensure no padding interferes with full width
         className
       )}
     >
@@ -29,6 +30,7 @@ export const BentoCard = ({
       "group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-xl",
       "bg-black-100 border border-black-50",
       "transform-gpu transition-all duration-300 hover:scale-[1.01]",
+      "h-full", // Ensure card takes full available height
       className
     )}
   >
@@ -36,7 +38,7 @@ export const BentoCard = ({
     
     {background}
     
-    <div className="relative z-10 flex flex-col gap-4 p-6">
+    <div className="relative z-10 flex flex-col gap-4 p-6 flex-grow">
       <div className="flex items-start justify-between">
         {Icon && (
           <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-black-200 border border-black-50">
@@ -56,7 +58,7 @@ export const BentoCard = ({
       </div>
 
       {features.length > 0 && (
-        <ul className="space-y-2 mt-2">
+        <ul className="space-y-2 mt-2 mb-4">
           {features.map((feature, idx) => (
             <li
               key={idx}
@@ -72,7 +74,7 @@ export const BentoCard = ({
     </div>
 
     {cta && (
-      <div className="relative z-10 p-6 pt-0">
+      <div className="relative z-10 p-6 pt-0 mt-auto">
         {typeof cta === 'string' ? (
           <button
             className={cn(
