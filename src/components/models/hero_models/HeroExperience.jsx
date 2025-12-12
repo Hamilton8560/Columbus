@@ -39,7 +39,7 @@ const HeroExperience = () => {
     <Canvas camera={{ position: [0, 0, 7], fov: 45 }}>
       {/* deep blue ambient */}
       <ambientLight intensity={0.2} color="#1a1a40" />
-      {/* Configure OrbitControls for mobile-friendly interaction */}
+      {/* Configure OrbitControls - disabled on mobile to prevent scroll interference */}
       <OrbitControls
         enablePan={false} // Prevents panning of the scene
         enableZoom={false} // Disables zoom
@@ -47,17 +47,8 @@ const HeroExperience = () => {
         minDistance={5} // Minimum distance for zooming in
         minPolarAngle={Math.PI / 5} // Minimum angle for vertical rotation
         maxPolarAngle={Math.PI / 2} // Maximum angle for vertical rotation
-        touches={{
-          ONE: null, // Disable one-finger rotation (allows scrolling)
-          TWO: isMobile ? 2 : 0 // Two-finger rotation on mobile, normal on desktop
-        }}
-        mouseButtons={{
-          LEFT: 0, // Normal mouse rotation on desktop
-          MIDDLE: null,
-          RIGHT: null
-        }}
-        enableRotate={true}
-        rotateSpeed={isMobile ? 0.5 : 1} // Slower rotation on mobile
+        enableRotate={!isMobile} // Disable rotation on mobile to prevent scroll interference
+        rotateSpeed={1} // Normal rotation speed on desktop
         enableDamping={true} // Smooth rotation
         dampingFactor={0.05}
       />

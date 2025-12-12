@@ -83,18 +83,10 @@ const Hero = () => {
 
         {/* RIGHT: 3D Model or Visual */}
         <figure>
-          <div className="hero-3d-layout">
+          <div className={`hero-3d-layout ${isMobile ? 'pointer-events-none' : ''}`}>
             <HeroExperience />
             
-            {/* Mobile interaction hint */}
-            {/* {isMobile && showHint && (
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 bg-black/80 text-white text-sm px-4 py-2 rounded-lg backdrop-blur-sm animate-pulse">
-                <div className="flex items-center gap-2">
-                  <span>👆</span>
-                  <span>Use two fingers to rotate</span>
-                </div>
-              </div>
-            )} */}
+
           </div>
         </figure>
       </div>
