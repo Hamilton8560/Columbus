@@ -38,15 +38,15 @@ export const BentoCard = ({
     
     {background}
     
-    <div className="relative z-10 flex flex-col gap-4 p-6 flex-grow">
-      <div className="flex items-start justify-between">
+    <div className="relative z-10 flex flex-col gap-4 p-6 flex-grow md:text-left text-center">
+      <div className="flex items-start justify-between md:flex-row flex-col md:gap-0 gap-2">
         {Icon && (
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-black-200 border border-black-50">
+          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-black-200 border border-black-50 md:mx-0 mx-auto">
             <Icon className="h-6 w-6 text-white-50" />
           </div>
         )}
         {highlight && (
-          <span className="px-3 py-1 text-xs font-medium bg-blue-500/10 text-blue-400 rounded-full">
+          <span className="px-3 py-1 text-xs font-medium bg-blue-500/10 text-blue-400 rounded-full md:mx-0 mx-auto">
             {highlight}
           </span>
         )}
@@ -62,7 +62,7 @@ export const BentoCard = ({
           {features.map((feature, idx) => (
             <li
               key={idx}
-              className="flex items-start gap-2 text-sm text-white-50 opacity-0 animate-fade-in"
+              className="flex items-start gap-2 text-sm text-white-50 opacity-0 animate-fade-in md:justify-start justify-center"
               style={{ animationDelay: `${idx * 100}ms` }}
             >
               <span className="text-green-400 mt-0.5">✓</span>
