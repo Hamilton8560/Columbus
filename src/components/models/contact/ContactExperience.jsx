@@ -1,20 +1,20 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
-import Computer from "./Computer";
+import Cockpit from "./Cockpit";
 
 const ContactExperience = () => {
   return (
-    <Canvas shadows camera={{ position: [0, 3, 7], fov: 45 }}>
-      <ambientLight intensity={0.5} color="#fff4e6" />
+    <Canvas shadows camera={{ position: [0, 1, 2], fov: 25 }}>
+      <ambientLight intensity={0.4} color="#ffffff" />
 
-      <directionalLight position={[5, 5, 3]} intensity={2.5} color="#ffd9b3" />
+      <directionalLight position={[3, 4, 2]} intensity={1.5} color="#ffffff" />
 
       <directionalLight
-        position={[5, 9, 1]}
+        position={[0, 5, 3]}
         castShadow
-        intensity={2.5}
-        color="#ffd9b3"
+        intensity={1.2}
+        color="#e6f3ff"
       />
 
       <OrbitControls
@@ -30,12 +30,12 @@ const ContactExperience = () => {
           rotation={[-Math.PI / 2, 0, 0]}
         >
           <planeGeometry args={[30, 30]} />
-          <meshStandardMaterial color="#a46b2d" />
+          <meshStandardMaterial color="#000000" />
         </mesh>
       </group>
 
-      <group scale={0.03} position={[0, -1.49, -2]} castShadow>
-        <Computer />
+      <group scale={0.5} position={[0, 0, 0]} rotation={[0, 0, 0]} castShadow>
+        <Cockpit />
       </group>
     </Canvas>
   );

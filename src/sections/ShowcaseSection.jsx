@@ -49,7 +49,7 @@ const AppShowcase = () => {
         <div className="showcaselayout">
           <div ref={rydeRef} className="first-project-wrapper">
             <div className="image-wrapper">
-              <img src="/images/project1.png" alt="Post Your Load" />
+              <img src="/images/Iphone.png" alt="My Shipments App" />
             </div>
             <div className="text-content">
               <h2>
@@ -65,20 +65,20 @@ const AppShowcase = () => {
 
           <div className="project-list-wrapper overflow-hidden">
             <div className="project" ref={libraryRef}>
-              <div className="image-wrapper bg-[#FFEFDB]">
+              <div className="image-wrapper bg-transparent">
                 <img
-                  src="/images/project2.png"
-                  alt="Connect with Carriers"
+                  src="/images/tablet.png"
+                  alt="Available Loads Dashboard"
                 />
               </div>
-              <h2>Connect Directly with Carriers</h2>
+              <h2>Browse & Bid on Available Loads</h2>
             </div>
 
             <div className="project" ref={ycDirectoryRef}>
-              <div className="image-wrapper bg-[#FFE7EB]">
-                <img src="/images/project3.png" alt="Track Delivery" />
+              <div className="image-wrapper bg-transparent">
+                <img src="/images/Gamify.png" alt="Driver Achievements" className="scale-125" />
               </div>
-              <h2>Track Your Freight in Real-Time</h2>
+              <h2>Earn Rewards & Track Achievements</h2>
             </div>
           </div>
         </div>

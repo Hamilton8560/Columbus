@@ -36,6 +36,12 @@ section {
   .flex-col-center {
     @apply flex flex-col justify-center items-center;
   }
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
 @layer components {
@@ -96,6 +102,63 @@ section {
 
   .hero-badge {
     @apply bg-black-200 py-2 px-4 rounded-full w-fit text-sm md:text-base text-nowrap;
+  }
+
+  /* Highway Marker Styles */
+  .highway-marker {
+    @apply relative w-fit mx-auto;
+  }
+
+  .highway-marker-inner {
+    @apply relative px-6 py-3 bg-yellow-400 border-2 border-yellow-600 shadow-lg;
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4a 50%, #ffd700 100%);
+    border-radius: 4px;
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .highway-marker-inner::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-b from-white/20 to-transparent;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  .highway-marker-text {
+    @apply font-bold text-black text-sm md:text-base tracking-wider uppercase;
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.05em;
+  }
+
+  .highway-marker-exit {
+    @apply relative w-fit mx-auto;
+  }
+
+  .highway-marker-exit .highway-marker-inner {
+    @apply bg-green-500 border-green-700;
+    background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #10b981 100%);
+  }
+
+  .highway-marker-exit .highway-marker-text {
+    @apply text-white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  }
+
+  .highway-marker-route {
+    @apply relative w-fit mx-auto;
+  }
+
+  .highway-marker-route .highway-marker-inner {
+    @apply bg-blue-600 border-blue-800;
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #2563eb 100%);
+  }
+
+  .highway-marker-route .highway-marker-text {
+    @apply text-white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
   }
 
   .hero-3d-layout {
@@ -421,6 +484,97 @@ section {
   }
 }
 /* marquee end */
+
+/* Magic UI Marquee animations */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration) linear infinite;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration) linear infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(calc(var(--radius) * 1px)) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(calc(var(--radius) * 1px)) rotate(-360deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbit calc(var(--duration) * 1s) linear infinite;
+}
+
+@keyframes border-beam {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+.animate-border-beam {
+  animation: border-beam calc(var(--duration) * 1s) infinite linear;
+  animation-delay: var(--delay);
+}
+
+@keyframes shimmer {
+  0% {
+    transform: skew(-13deg) translateX(-100%);
+  }
+  100% {
+    transform: skew(-13deg) translateX(200%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    transparent 25%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    transparent 75%
+  );
+}
 
 .card {
   --start: 0;

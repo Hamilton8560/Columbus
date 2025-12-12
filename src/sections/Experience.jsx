@@ -1,149 +1,166 @@
-import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-import { expCards } from "../constants";
+import { useRef } from "react";
+import { featureCards } from "../constants";
 import TitleHeader from "../components/TitleHeader";
-import GlowCard from "../components/GlowCard";
+import { BentoGrid, BentoCard } from "../components/magicui/BentoGrid";
+import { PackageIcon, TruckIcon, DollarIcon, ClockIcon, ChartIcon } from "../components/Icons";
+import { BorderBeam } from "../components/magicui/BorderBeam";
+import { OrbitingCircles } from "../components/magicui/OrbitingCircles";
+import { AnimatedBeam, Circle } from "../components/magicui/AnimatedBeam";
+import { ShineBorder } from "../components/magicui/ShineBorder";
+import { NumberCounter } from "../components/magicui/NumberCounter";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
+  const containerRef = useRef(null);
+  const shipperRef = useRef(null);
+  const centralRef = useRef(null);
+  const carrierRef = useRef(null);
+
   useGSAP(() => {
-    // Loop through each timeline card and animate them in
-    // as the user scrolls to each card
-    gsap.utils.toArray(".timeline-card").forEach((card) => {
-      // Animate the card coming in from the left
-      // and fade in
+    // Animate cards appearing on scroll
+    gsap.utils.toArray(".feature-card").forEach((card, index) => {
       gsap.from(card, {
-        // Move the card in from the left
-        xPercent: -100,
-        // Make the card invisible at the start
+        y: 60,
         opacity: 0,
-        // Set the origin of the animation to the left side of the card
-        transformOrigin: "left left",
-        // Animate over 1 second
-        duration: 1,
-        // Use a power2 ease-in-out curve
-        ease: "power2.inOut",
-        // Trigger the animation when the card is 80% of the way down the screen
+        duration: 0.8,
+        delay: index * 0.1,
+        ease: "power3.out",
         scrollTrigger: {
-          // The card is the trigger element
           trigger: card,
-          // Trigger the animation when the card is 80% down the screen
-          start: "top 80%",
+          start: "top 85%",
+          once: true,
         },
       });
     });
 
-    // Animate the timeline height as the user scrolls
-    // from the top of the timeline to 70% down the screen
-    // The timeline height should scale down from 1 to 0
-    // as the user scrolls up the screen
-    gsap.to(".timeline", {
-      // Set the origin of the animation to the bottom of the timeline
-      transformOrigin: "bottom bottom",
-      // Animate the timeline height over 1 second
-      ease: "power1.inOut",
-      // Trigger the animation when the timeline is at the top of the screen
-      // and end it when the timeline is at 70% down the screen
+    // Animate the title
+    gsap.from(".feature-title", {
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power3.out",
       scrollTrigger: {
-        trigger: ".timeline",
-        start: "top center",
-        end: "70% center",
-        // Update the animation as the user scrolls
-        onUpdate: (self) => {
-          // Scale the timeline height as the user scrolls
-          // from 1 to 0 as the user scrolls up the screen
-          gsap.to(".timeline", {
-            scaleY: 1 - self.progress,
-          });
-        },
+        trigger: ".feature-title",
+        start: "top 85%",
+        once: true,
       },
     });
 
-    // Loop through each expText element and animate them in
-    // as the user scrolls to each text element
-    gsap.utils.toArray(".expText").forEach((text) => {
-      // Animate the text opacity from 0 to 1
-      // and move it from the left to its final position
-      // over 1 second with a power2 ease-in-out curve
-      gsap.from(text, {
-        // Set the opacity of the text to 0
-        opacity: 0,
-        // Move the text from the left to its final position
-        // (xPercent: 0 means the text is at its final position)
-        xPercent: 0,
-        // Animate over 1 second
-        duration: 1,
-        // Use a power2 ease-in-out curve
-        ease: "power2.inOut",
-        // Trigger the animation when the text is 60% down the screen
-        scrollTrigger: {
-          // The text is the trigger element
-          trigger: text,
-          // Trigger the animation when the text is 60% down the screen
-          start: "top 60%",
-        },
-      });
-    }, "<"); // position parameter - insert at the start of the animation
+    // Animate the connection diagram
+    gsap.from(".connection-diagram", {
+      scale: 0.8,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".connection-diagram",
+        start: "top 80%",
+        once: true,
+      },
+    });
   }, []);
+
+  const getIcon = (iconName) => {
+    switch (iconName) {
+      case "package":
+        return PackageIcon;
+      case "truck":
+        return TruckIcon;
+      case "dollar":
+        return DollarIcon;
+      default:
+        return PackageIcon;
+    }
+  };
+
+  const EnhancedBentoCard = ({ card, index }) => (
+    <BorderBeam
+      className="h-full"
+      size={300}
+      duration={12 + index * 2}
+      delay={index * 0.5}
+      colorFrom="#18CCFC"
+      colorTo="#6344F5"
+    >
+      <BentoCard
+        name={card.name}
+        className="h-full border-0"
+        Icon={getIcon(card.icon)}
+        description={card.description}
+        highlight={card.highlight}
+        features={card.features.slice(0, 3)} // Show only first 3 features
+        cta={
+          <ShineBorder borderRadius={12} className="w-full">
+            <div className="w-full text-center py-2 font-medium text-white">
+              {card.cta}
+            </div>
+          </ShineBorder>
+        }
+        background={
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20" />
+          </div>
+        }
+      />
+    </BorderBeam>
+  );
 
   return (
     <section
       id="experience"
-      className="flex-center md:mt-40 mt-20 section-padding xl:px-0"
+      className="flex-center md:mt-40 mt-20 section-padding"
     >
       <div className="w-full h-full md:px-20 px-5">
-        <TitleHeader
-          title="Professional Work Experience"
-          sub="💼 My Career Overview"
-        />
-        <div className="mt-32 relative">
-          <div className="relative z-50 xl:space-y-32 space-y-10">
-            {expCards.map((card) => (
-              <div key={card.title} className="exp-card-wrapper">
-                <div className="xl:w-2/6">
-                  <GlowCard card={card}>
-                    <div>
-                      <img src={card.imgPath} alt="exp-img" />
-                    </div>
-                  </GlowCard>
-                </div>
-                <div className="xl:w-4/6">
-                  <div className="flex items-start">
-                    <div className="timeline-wrapper">
-                      <div className="timeline" />
-                      <div className="gradient-line w-1 h-full" />
-                    </div>
-                    <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
-                      <div className="timeline-logo">
-                        <img src={card.logoPath} alt="logo" />
-                      </div>
-                      <div>
-                        <h1 className="font-semibold text-3xl">{card.title}</h1>
-                        <p className="my-5 text-white-50">
-                          🗓️&nbsp;{card.date}
-                        </p>
-                        <p className="text-[#839CB5] italic">
-                          Responsibilities
-                        </p>
-                        <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
-                          {card.responsibilities.map(
-                            (responsibility, index) => (
-                              <li key={index} className="text-lg">
-                                {responsibility}
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <div className="feature-title">
+          <TitleHeader
+            title="How Columbus Works"
+          />
+        </div>
+
+
+        {/* Feature Cards */}
+        <div className="mt-16">
+          <BentoGrid>
+            {featureCards.map((card, index) => (
+              <div key={card.id} className="feature-card">
+                <EnhancedBentoCard card={card} index={index} />
               </div>
             ))}
-          </div>
+          </BentoGrid>
+        </div>
+
+        {/* Enhanced Stats Section */}
+        <div className="mt-16 flex flex-col md:flex-row gap-8 items-center justify-center">
+          <BorderBeam className="px-8 py-4" size={200} duration={10} colorFrom="#00FF87" colorTo="#60EFFF">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white">
+                <NumberCounter value={800} suffix="+" />
+              </div>
+              <div className="text-white-50 text-sm">Active Carriers</div>
+            </div>
+          </BorderBeam>
+
+          <BorderBeam className="px-8 py-4" size={200} duration={15} colorFrom="#FF6B6B" colorTo="#4ECDC4">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white">
+                <NumberCounter value={25} suffix="%" />
+              </div>
+              <div className="text-white-50 text-sm">Average Savings</div>
+            </div>
+          </BorderBeam>
+
+          <BorderBeam className="px-8 py-4" size={200} duration={12} colorFrom="#A8E6CF" colorTo="#FFB6C1">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white">
+                <NumberCounter value={98} suffix="%" />
+              </div>
+              <div className="text-white-50 text-sm">On-Time Delivery</div>
+            </div>
+          </BorderBeam>
         </div>
       </div>
     </section>

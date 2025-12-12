@@ -35,41 +35,6 @@ const counterItems = [
   { value: 98, suffix: "%", label: "On-Time Delivery Rate" },
 ];
 
-const logoIconsList = [
-  {
-    imgPath: "/images/logos/company-logo-1.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-2.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-3.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-4.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-5.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-6.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-7.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-8.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-9.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-10.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-11.png",
-  },
-];
 
 const abilities = [
   {
@@ -145,42 +110,54 @@ const techStackIcons = [
   },
 ];
 
-const expCards = [
+const featureCards = [
   {
-    review: "Columbus transformed how we move freight. We cut shipping costs by 22% and now have direct relationships with reliable carriers we trust.",
-    imgPath: "/images/exp1.png",
-    logoPath: "/images/logo1.png",
-    title: "For Shippers",
-    date: "Post Loads in Minutes",
-    responsibilities: [
-      "Get instant quotes from verified carriers competing for your freight.",
-      "Track shipments in real-time from pickup to final delivery destination.",
-      "Eliminate broker fees and connect directly with qualified drivers.",
+    id: "shippers",
+    name: "For Shippers",
+    description: "Post loads in seconds and get instant quotes from verified carriers. Cut costs by eliminating broker fees.",
+    highlight: "Save 20-30%",
+    features: [
+      "Post loads in under 60 seconds",
+      "Get competitive quotes instantly",
+      "Real-time GPS tracking",
+      "Direct carrier communication",
+      "Automated documentation"
     ],
+    cta: "Start Shipping",
+    icon: "package",
+    testimonial: "Columbus transformed how we move freight. We cut shipping costs by 22% and now have direct relationships with reliable carriers we trust.",
   },
   {
-    review: "Since joining Columbus, I've increased my take-home pay by keeping more of each load. Finding freight has never been easier.",
-    imgPath: "/images/exp2.png",
-    logoPath: "/images/logo2.png",
-    title: "For Carriers",
-    date: "Find Loads Directly",
-    responsibilities: [
-      "Access thousands of loads posted directly by shippers nationwide.",
-      "Keep more of your earnings without broker commissions eating profits.",
-      "Build direct relationships with shippers for consistent freight.",
+    id: "carriers",
+    name: "For Carriers", 
+    description: "Find profitable loads directly from shippers. No broker commissions means more money in your pocket.",
+    highlight: "Keep 100% earnings",
+    features: [
+      "Browse thousands of loads",
+      "No broker commissions",
+      "Quick payment processing",
+      "Build shipper relationships",
+      "24/7 load availability"
     ],
+    cta: "Join as Carrier",
+    icon: "truck",
+    testimonial: "Since joining Columbus, I've increased my take-home pay by keeping more of each load. Finding freight has never been easier.",
   },
   {
-    review: "The platform is incredibly easy to use. I went from signing up to booking my first load in under an hour. Game changer.",
-    imgPath: "/images/exp3.png",
-    logoPath: "/images/logo3.png",
-    title: "For Owner-Operators",
-    date: "Maximize Your Earnings",
-    responsibilities: [
-      "Set your own rates and choose the loads that work for your schedule.",
-      "Get paid faster with streamlined payment processing and tracking.",
-      "Access dedicated support to help grow your trucking business.",
+    id: "owner-operators",
+    name: "For Owner-Operators",
+    description: "Take control of your business. Set your rates, choose your routes, and maximize profitability.",
+    highlight: "Grow faster",
+    features: [
+      "Set your own rates",
+      "Flexible scheduling",
+      "Business analytics dashboard",
+      "Dedicated support team",
+      "Fuel card discounts"
     ],
+    cta: "Grow Your Business",
+    icon: "dollar",
+    testimonial: "The platform is incredibly easy to use. I went from signing up to booking my first load in under an hour. Game changer.",
   },
 ];
 
@@ -266,9 +243,8 @@ const socialImgs = [
 export {
   words,
   abilities,
-  logoIconsList,
   counterItems,
-  expCards,
+  featureCards,
   expLogos,
   testimonials,
   socialImgs,
