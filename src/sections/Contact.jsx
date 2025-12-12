@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
 import TitleHeader from "../components/TitleHeader";
 import ContactExperience from "../components/models/contact/ContactExperience";
+import Confetti from "../components/magicui/Confetti";
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -12,15 +13,74 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [feedback, setFeedback] = useState({ message: "", type: "" });
+  const [cooldownTime, setCooldownTime] = useState(0);
+  
+  const confetti = Confetti();
+  
+  const COOLDOWN_DURATION = 30 * 60 * 1000; // 30 minutes in milliseconds
+
+  // Check cooldown on component mount and set up interval
+  useEffect(() => {
+    const checkCooldown = () => {
+      const lastEmailSent = localStorage.getItem('lastEmailSent');
+      if (lastEmailSent) {
+        const timePassed = Date.now() - parseInt(lastEmailSent);
+        const timeRemaining = COOLDOWN_DURATION - timePassed;
+        
+        if (timeRemaining > 0) {
+          setCooldownTime(timeRemaining);
+        } else {
+          setCooldownTime(0);
+          localStorage.removeItem('lastEmailSent');
+        }
+      }
+    };
+
+    checkCooldown();
+    const interval = setInterval(checkCooldown, 1000); // Update every second
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatCooldownTime = (milliseconds) => {
+    const minutes = Math.ceil(milliseconds / (1000 * 60));
+    return `${minutes} minute${minutes !== 1 ? 's' : ''}`;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+    // Clear feedback when user starts typing
+    if (feedback.message) {
+      setFeedback({ message: "", type: "" });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Show loading state
+    setLoading(true);
+    setFeedback({ message: "", type: "" });
+
+    // Check if user is in cooldown
+    if (cooldownTime > 0) {
+      setFeedback({
+        message: `Please wait ${formatCooldownTime(cooldownTime)} before sending another message.`,
+        type: "error"
+      });
+      setLoading(false);
+      return;
+    }
+
+    // Basic validation
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setFeedback({
+        message: "Please fill in all fields.",
+        type: "error"
+      });
+      setLoading(false);
+      return;
+    }
 
     try {
       await emailjs.sendForm(
@@ -30,12 +90,26 @@ const Contact = () => {
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
       );
 
-      // Reset form and stop loading
+      // Set cooldown timestamp
+      localStorage.setItem('lastEmailSent', Date.now().toString());
+      setCooldownTime(COOLDOWN_DURATION);
+
+      // Trigger confetti celebration
+      confetti.fireSideCannons();
+
       setForm({ name: "", email: "", message: "" });
+      setFeedback({
+        message: "Message sent successfully! ✨ We'll get back to you soon.",
+        type: "success"
+      });
     } catch (error) {
-      console.error("EmailJS Error:", error); // Optional: show toast
+      console.error("EmailJS Error:", error);
+      setFeedback({
+        message: "Failed to send message. Please try again or contact us directly.",
+        type: "error"
+      });
     } finally {
-      setLoading(false); // Always stop loading, even on error
+      setLoading(false);
     }
   };
 
@@ -55,7 +129,7 @@ const Contact = () => {
                 className="w-full flex flex-col gap-7"
               >
                 <div>
-                  <label htmlFor="name">Your name</label>
+                  <label htmlFor="name">Your Name</label>
                   <input
                     type="text"
                     id="name"
@@ -93,17 +167,32 @@ const Contact = () => {
                   />
                 </div>
 
-                <button type="submit">
-                  <div className="cta-button group">
+                <button type="submit" disabled={loading || cooldownTime > 0}>
+                  <div className={`cta-button group ${cooldownTime > 0 ? 'opacity-50 cursor-not-allowed' : ''}`}>
                     <div className="bg-circle" />
                     <p className="text">
-                      {loading ? "Sending..." : "Send Message"}
+                      {loading 
+                        ? "Sending..." 
+                        : cooldownTime > 0 
+                          ? `Wait ${formatCooldownTime(cooldownTime)}` 
+                          : "Send Message"
+                      }
                     </p>
                     <div className="arrow-wrapper">
                       <img src="/images/arrow-down.svg" alt="arrow" />
                     </div>
                   </div>
                 </button>
+
+                {feedback.message && (
+                  <div className={`mt-4 p-4 rounded-lg text-center ${
+                    feedback.type === "success" 
+                      ? "bg-green-100 text-green-800 border border-green-200" 
+                      : "bg-red-100 text-red-800 border border-red-200"
+                  }`}>
+                    {feedback.message}
+                  </div>
+                )}
               </form>
             </div>
           </div>
