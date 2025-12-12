@@ -121,8 +121,8 @@ const Contact = () => {
           sub="💬 Join Columbus today and start saving! 🚀"
         />
         <div className="grid-12-cols mt-16">
-          <div className="col-span-full xl:col-span-5">
-            <div className="xl:flex-center xl:card-border xl:rounded-xl xl:p-10">
+          <div className="col-span-full xl:col-span-5 flex justify-center">
+            <div className="xl:flex-center xl:card-border xl:rounded-xl xl:p-10 w-full max-w-lg">
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
@@ -200,6 +200,13 @@ const Contact = () => {
             <div className="bg-black w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
               <ContactExperience />
             </div>
+          </div>
+        </div>
+        
+        {/* Driver model for mobile screens - shown below the contact form */}
+        <div className="xl:hidden mt-8 w-full h-64 sm:h-80">
+          <div className="bg-black w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
+            <ContactExperience />
           </div>
         </div>
       </div>
